@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import { bannerReducer } from "./banner";
+import { toolbarReducer } from "./toolbar";
+import { themeReducer } from "./theme";
 
 export default combineReducers({
-  banner: bannerReducer,
+  toolbar: toolbarReducer,
+  theme: themeReducer,
 });

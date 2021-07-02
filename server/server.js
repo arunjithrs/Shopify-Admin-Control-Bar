@@ -18,6 +18,11 @@ import routes from "./router/index";
 // import getSubscriptionUrl from "../server/handlers/mutations/get-subscription-url";
 // import getAppSubscriptionStatus from "../server/handlers/mutations/get-subscription-status";
 // import { getPendingSubscriptions } from "../server/handlers/subscription/subscription";
+import {
+  getCurrentThemeId,
+  updateAssetThemeLiquid,
+  updateThemeIdInDatabase,
+} from "./handlers/theme/theme";
 import { registerStoreWebhooks } from "../server/handlers/webhooks/webhooks";
 
 const jwt = require("jsonwebtoken");
@@ -89,6 +94,13 @@ app.prepare().then(async () => {
         //   shop
         // );
         // await updateShop(shop, { confirmationUrl: confirmationUrl });
+
+        // update theme
+        console.log("Start updating theme");
+        const currentTheme = await getCurrentThemeId(shop);
+        await updateThemeIdInDatabase(shop, currentTheme);
+        await updateAssetThemeLiquid(shop, currentTheme.id);
+
         ctx.redirect(`/?shop=${shop}`);
         // return ctx.redirect(confirmationUrl);
       },

@@ -1,13 +1,8 @@
 import Router from "koa-router";
-import {
-  getBannerSettings,
-  initializeBanner,
-  updateBadge,
-} from "../controllers/banner_controller";
+import { getToolbar, updateToolbar } from "../controllers/toolbar_controller";
 
 const koaBody = require("koa-body");
-
-const router = new Router({ prefix: "/api/banner" });
+const router = new Router({ prefix: "/api/toolbar" });
 
 // router.post("/", koaBody(), async (ctx) => {
 //   const result = await saveShopSettings(ctx.myClient, ctx.request.body);
@@ -19,18 +14,13 @@ const router = new Router({ prefix: "/api/banner" });
 //   ctx.body = result;
 // });
 router.get("/", koaBody(), async (ctx) => {
-  const result = await getBannerSettings(ctx.myClient);
-  ctx.body = result;
-});
-
-router.post("/initialize", koaBody(), async (ctx) => {
-  const result = await initializeBanner(ctx.myClient);
+  const result = await getToolbar(ctx.myClient);
   ctx.body = result;
 });
 
 router.put("/", koaBody(), async (ctx) => {
   console.log(ctx.body);
-  const result = await updateBadge(ctx.myClient, ctx.request.body);
+  const result = await updateToolbar(ctx.myClient, ctx.request.body);
   ctx.body = result;
 });
 

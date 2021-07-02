@@ -1,0 +1,14 @@
+ 
+<!-- Pinetree Admin Toolbar App -->
+{% capture CFH %}{{ content_for_header  }}{% endcapture %}{{ CFH }}
+{% if CFH contains 'preview_bar_injector' %}
+    {% assign admin = true %}
+{% endif %}
+
+{% if admin %} 
+    {% capture snippet_content %}{% include 'pinetree-admin-toolbar' %}{% endcapture %}
+    {% unless snippet_content contains "Liquid error" %}
+      {{ snippet_content }}
+    {% endunless %}
+{% endif %}
+<!-- End of Pinetree Admin Toolbar App -->

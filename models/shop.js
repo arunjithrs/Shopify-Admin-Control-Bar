@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const BannerSchema = new mongoose.Schema({
+const ToolbarSchema = new mongoose.Schema({
   enabled: {
     type: Boolean,
     required: true,
@@ -55,7 +55,11 @@ const ShopSchema = new mongoose.Schema({
     type: String,
     default: false,
   },
-  banner: BannerSchema,
+  mainThemeId: {
+    type: String,
+    required: false,
+  },
+  toolbar: ToolbarSchema,
   apiSettings: {},
 });
 

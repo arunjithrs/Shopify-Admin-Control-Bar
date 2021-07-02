@@ -1,37 +1,29 @@
 const Shop = require("../../models/shop");
 
-export async function getBannerSettings(client) {
+export async function getToolbar(client) {
+  console.log(client);
   if (client) {
-    return ["asdasda", "asdasda", "asdasda"];
     const result = await Shop.findOne({
       shop: client.domain,
       accessToken: client.accessToken,
     });
-    return result.settings;
-  }
 
+    return result?.toolbar ? result?.toolbar : { enabled: false };
+  }
   return false;
 }
 
-export async function initializeBanner(client) {
-  if (client) {
-    return ["ok"];
-  }
-
-  return false;
-}
-
-export async function updateBadge(client, data) {
+export async function updateToolbar(client, data) {
   if (client && data) {
-    console.log(data);
-    console.log(data);
-
+    let data = {
+      background: data?.background,
+    };
     const shop = await Shop.findOneAndUpdate(
       { accessToken: client.accessToken, shop: client.domain },
-      { banner: data },
+      { toolbar: data },
       { new: true }
     );
-    return shop.banner;
+    return shop.toolbar;
   }
 
   return false;

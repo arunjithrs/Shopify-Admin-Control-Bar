@@ -2,7 +2,8 @@ import combineRouters from "koa-combine-routers";
 import scriptTagRouter from "./script_tag";
 import settingsRouter from "./settings";
 import subscriptionRouter from "./subscription";
-import bannerRoute from "./banner";
+import toolbarRoute from "./toolbar";
+import themeRoute from "./theme";
 import webhookRouter from "./webhooks";
 
 const router = combineRouters(
@@ -10,7 +11,8 @@ const router = combineRouters(
   settingsRouter,
   subscriptionRouter,
   webhookRouter,
-  bannerRoute
+  toolbarRoute,
+  themeRoute
 );
 
 export default router;
